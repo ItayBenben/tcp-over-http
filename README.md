@@ -84,7 +84,7 @@ If you want to modify it, modify the Dockerfie.
 Replace `listen_http_port`, `target_host`, `target_port` with your on values.
 ```bash
 # Start exit node to reach our SSH server, on 192.168.1.100:22.
-docker run -it -e listen_http_port=8080 -p 8080:8080 -e target_host=192.168.1.100 -e target_port=22 the_exit
+docker run -it -d -e listen_http_port=8080 -p 8080:8080 -e target_host=192.168.1.100 -e target_port=22 the_exit
 
 # Start our entry node (Reaching exit in http://192.168.1.44:8080/)
 todo:
