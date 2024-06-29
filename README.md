@@ -75,8 +75,11 @@ _Note_:
 This is applied to the stable version, checkout tag `rocket-stable`.
 If you want to modify it, modify the Dockerfie.
 
-- ```bash
-  docker build . -t <image_name>
+ ```bash
+  # Exit
+  docker build . -f Dockerfile_exit -t the_exit
+  # Entry
+  docker build . -f Dockerfile_entry -t the_entry
   ```
 
 ## 🐋 Usage - image
@@ -87,7 +90,7 @@ Replace `listen_http_port`, `target_host`, `target_port` with your on values.
 docker run -it -d -e listen_http_port=8080 -p 8080:8080 -e target_host=192.168.1.100 -e target_port=22 the_exit
 
 # Start our entry node (Reaching exit in http://192.168.1.44:8080/)
-todo:
+docker run -it -d -e target_url=http://192.168.1.44:8080/ -e listen-tcp-port=1415 -p 1415:1415 the_entry
 
 # Test it
 ssh localhost -p 1415

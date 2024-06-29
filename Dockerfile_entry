@@ -1,0 +1,11 @@
+FROM rust:1.67
+WORKDIR /usr/src/myapp
+
+ENV target_url=http://192.168.1.44:8080/
+ENV listen_tcp_port=1415
+
+RUN rustup default nightly
+RUN rustup update
+RUN cargo install --locked --git https://github.com/julianbuettner/tcp-over-http --tag rocket-stable
+
+ENTRYPOINT tcp-over-http entry --bind-ip 0.0.0.0 --target-url ${target_url} --listen-tcp-port ${listen_tcp_port}
