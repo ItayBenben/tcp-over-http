@@ -34,7 +34,7 @@
   Security wise, no admin would want this tool on their
   server without them knowing.
 
-## 🌲 Installation
+## 🌲 Installation - host
 
 - get yourself a rust toolchain via rustup https://www.rust-lang.org/tools/install
 - go nightly: `rustup default nightly`
@@ -50,7 +50,7 @@ which uses rocket and can be build with stable.
   cargo install --locked --git https://github.com/julianbuettner/tcp-over-http --tag rocket-stable
   ```
 
-## 🎺 Usage
+## 🎺 Usage - host
 
 Replace `tcp-over-http` by `cargo run --release --`
 if you have not installed the binary.
@@ -69,6 +69,30 @@ tcp-over-http entry --target-url http://localhost:8080/
 # Test it
 ssh localhost -p 1415
 ```
+
+## 🛥️ Installation - image
+_Note_:  
+This is applied to the stable version, checkout tag `rocket-stable`.
+If you want to modify it, modify the Dockerfie.
+
+- ```bash
+  docker build . -t <image_name>
+  ```
+
+## 🐋 Usage - image
+
+Replace `listen_http_port`, `target_host`, `target_port` with your on values.
+```bash
+# Start exit node to reach our SSH server, on 192.168.1.100:22.
+docker run -it -e listen_http_port=8080 -p 8080:8080 -e target_host=192.168.1.100 -e target_port=22 the_exit
+
+# Start our entry node (Reaching exit in http://192.168.1.44:8080/)
+todo:
+
+# Test it
+ssh localhost -p 1415
+```
+
 
 ## ⌚️ Performance
 
